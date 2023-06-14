@@ -1,7 +1,7 @@
 <?php
-$DB_host = "192.168.20.228";
+$DB_host = "mysqldb";
 $DB_user = "root";
-$DB_pass = "hms1234";
+$DB_pass = "cloud12";
 $DB_name = "hms";
 try
 {
