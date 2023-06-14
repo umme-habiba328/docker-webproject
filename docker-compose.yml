@@ -1,0 +1,32 @@
+version: "3"
+services:
+  mysqldb:
+    container_name: mysqldb
+    image: mysql:8.0
+    restart: always
+    volumes:
+      - ./conf/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_ROOT_PASSWORD: cloud12
+      MYSQL_DATABASE: hms
+      MYSQL_USER: root
+      MYSQL_PASSWORD: bjit1234
+    ports:
+      - 3306:3306
+    networks:
+      - hms-network
+  php-apache-environment:
+    container_name: php-apache
+    build:
+      context: ./php
+      dockerfile: Dockerfile
+    depends_on:
+      - mysqldb
+    ports:
+      - 83:80
+    networks:
+      - hms-network
+volumes:
+  db_data:
+networks:
+  hms-network:
